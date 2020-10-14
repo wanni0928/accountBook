@@ -9,17 +9,19 @@ public class Account {
     private int balance;
     private LocalDateTime localDateTime;
     private AccountStatus accountStatus;
+    private Category category;
 
     public Account() {
     }
 
-    public Account(Long id, String title, String content, int balance, LocalDateTime localDateTime, AccountStatus accountStatus) {
+    public Account(Long id, String title, String content, int balance, LocalDateTime localDateTime, AccountStatus accountStatus, Category category) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.balance = balance;
         this.localDateTime = localDateTime;
         this.accountStatus = accountStatus;
+        this.category = category;
     }
 
     public Long getId() {
@@ -68,6 +70,14 @@ public class Account {
 
     public void setAccountStatus(AccountStatus accountStatus) {
         this.accountStatus = accountStatus;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override

@@ -2,9 +2,11 @@ package com.accountbook.controller;
 
 import com.accountbook.model.Account;
 import com.accountbook.model.AccountStatus;
+import com.accountbook.model.Category;
 import com.accountbook.repository.MoneyService;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class MoneyController {
     private final MoneyService moneyService;
@@ -17,13 +19,12 @@ public class MoneyController {
     public void addExpand() {
         Account account = new Account();
         account.setTitle("테스트제목");
-        account.setContent("테스트 내용. 테스트 내용.");
+        account.setContent("의류");
         account.setBalance(10000);
         account.setAccountStatus(AccountStatus.EXPAND);
+        account.setCategory(Category.CLOTH);
         account.setLocalDateTime(LocalDateTime.now());
-        String status = AccountStatus.EXPAND.toString();
         moneyService.addExpand(account);
-        System.out.println("소비 완료");
     }
 
     /*수입 추가*/
@@ -34,9 +35,11 @@ public class MoneyController {
         account.setBalance(20000);
         account.setAccountStatus(AccountStatus.INCOME);
         account.setLocalDateTime(LocalDateTime.now());
-
         moneyService.addExpand(account);
-        System.out.println("수입 완료");
+    }
+
+    public void findAll() {
+        List<Account> accounts = moneyService.findAll();
     }
 
     /*삭제*/

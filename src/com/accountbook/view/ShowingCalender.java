@@ -1,22 +1,22 @@
 package com.accountbook.view;
 
 import com.accountbook.model.CalenderDatabase;
-import com.accountbook.model.Date;
+import com.accountbook.model.CustomDate;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class ShowingCalender implements ShowingCalenderInterface{
     public ShowingCalender() {
+        CalenderDatabase.getDb();
     }
 
     @Override
     public void monthView() {
-        CalenderDatabase calenderDatabase = CalenderDatabase.getDb();
-        List<List<Date>> monthList = calenderDatabase.monthList;
+//        CalenderDatabase calenderDatabase = CalenderDatabase.getDb();
+        List<List<CustomDate>> monthList = CalenderDatabase.monthList;
         {
             int i =1;
-            for (List<Date> month : monthList) {
+            for (List<CustomDate> month : monthList) {
                 System.out.printf("%4s", i + "월");
                 i++;
             }
@@ -25,11 +25,11 @@ public class ShowingCalender implements ShowingCalenderInterface{
 
     @Override
     public void dailyView() {
-        CalenderDatabase calenderDatabase = CalenderDatabase.getDb();
-        List<List<Date>> monthList = calenderDatabase.monthList;
+//        CalenderDatabase calenderDatabase = CalenderDatabase.getDb();
+        List<List<CustomDate>> monthList = CalenderDatabase.monthList;
         {
             int i =1;
-            for(Date day : monthList.get(0)) {
+            for(CustomDate day : monthList.get(0)) {
                 System.out.printf("%4s",i+"일");
                 if(i%6==0)
                     System.out.println();

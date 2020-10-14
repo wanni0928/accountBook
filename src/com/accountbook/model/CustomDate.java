@@ -1,6 +1,6 @@
 package com.accountbook.model;
 
-public class Date {
+public class CustomDate {
     int month=0;
     int date=0;
 

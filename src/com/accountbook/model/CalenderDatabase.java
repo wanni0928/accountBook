@@ -4,15 +4,15 @@ import java.util.List;
 
 public class CalenderDatabase {
     static private CalenderDatabase db = null;
-    static public List<List<Date>> monthList;
+    static public List<List<CustomDate>> monthList;
     private CalenderDatabase() {
         monthList = new ArrayList<>();
         for(int i = 1; i<13; i++) {
-            List<Date> dayList = new ArrayList<>();
+            List<CustomDate> dayList = new ArrayList<>();
             for(int j = 1; j<32; j++) {
-                Date date = new Date();
-                date.setDate(j); date.setMonth(i);
-                dayList.add(date);
+                CustomDate customDate = new CustomDate();
+                customDate.setDate(j); customDate.setMonth(i);
+                dayList.add(customDate);
             }
             monthList.add(dayList);
         }
@@ -29,9 +29,9 @@ public class CalenderDatabase {
         }
         return db;
     }
-    public Date getDate(int month, int day) {
-        Date date = monthList.get(month-1).get(day-1);
-        return date;
+    public CustomDate getDate(int month, int day) {
+        CustomDate customDate = monthList.get(month-1).get(day-1);
+        return customDate;
     }
 
 }
