@@ -1,7 +1,7 @@
 package com.accountbook.view;
 
-import com.accountbook.model.CalenderDatabase;
-import com.accountbook.model.CustomDate;
+import com.accountbook.domain.CalenderDatabase;
+import com.accountbook.domain.CustomDate;
 
 import java.util.List;
 

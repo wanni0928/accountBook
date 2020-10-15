@@ -1,9 +1,9 @@
 package com.accountbook.controller;
 
-import com.accountbook.model.Account;
-import com.accountbook.model.AccountStatus;
-import com.accountbook.model.Category;
-import com.accountbook.repository.MoneyService;
+import com.accountbook.domain.Account;
+import com.accountbook.domain.AccountStatus;
+import com.accountbook.domain.Category;
+import com.accountbook.service.MoneyService;
 
 import java.time.LocalDateTime;
 import java.util.List;

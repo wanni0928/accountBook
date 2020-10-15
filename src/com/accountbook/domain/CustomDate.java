@@ -1,8 +1,8 @@
-package com.accountbook.model;
+package com.accountbook.domain;
 
 public class CustomDate {
-    int month=0;
-    int date=0;
+    int month = 0;
+    int date = 0;
 
     public int getMonth() {
         return month;

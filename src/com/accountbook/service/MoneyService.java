@@ -1,6 +1,8 @@
-package com.accountbook.repository;
+package com.accountbook.service;
 
-import com.accountbook.model.Account;
+import com.accountbook.domain.Account;
+import com.accountbook.repository.MemoryMoneyRepository;
+import com.accountbook.repository.MoneyRespository;
 
 import java.util.List;
 

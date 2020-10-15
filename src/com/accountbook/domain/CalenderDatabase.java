@@ -1,4 +1,4 @@
-package com.accountbook.model;
+package com.accountbook.domain;
 import java.util.ArrayList;
 import java.util.List;
 

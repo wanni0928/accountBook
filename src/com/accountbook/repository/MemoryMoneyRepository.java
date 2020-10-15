@@ -1,6 +1,6 @@
 package com.accountbook.repository;
 
-import com.accountbook.model.Account;
+import com.accountbook.domain.Account;
 
 import java.util.*;
 

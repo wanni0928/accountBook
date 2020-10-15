@@ -2,9 +2,9 @@ package com.accountbook;
 
 import com.accountbook.controller.MoneyController;
 import com.accountbook.controller.ScheduleController;
-import com.accountbook.model.Account;
-import com.accountbook.repository.CalendarUtil;
-import com.accountbook.repository.MoneyService;
+import com.accountbook.domain.Account;
+import com.accountbook.utils.CalendarUtil;
+import com.accountbook.service.MoneyService;
 
 import java.util.List;
 
