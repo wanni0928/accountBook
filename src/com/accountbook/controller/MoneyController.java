@@ -38,8 +38,8 @@ public class MoneyController {
         moneyService.addExpand(account);
     }
 
-    public void findAll() {
-        List<Account> accounts = moneyService.findAll();
+    public List<Account> findAll() {
+        return moneyService.findAll();
     }
 
     /*삭제*/

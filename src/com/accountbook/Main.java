@@ -1,8 +1,11 @@
 package com.accountbook;
 
 import com.accountbook.controller.MoneyController;
-import com.accountbook.repository.CalendarService;
+import com.accountbook.model.Account;
+import com.accountbook.repository.CalendarUtil;
 import com.accountbook.repository.MoneyService;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,15 +14,12 @@ public class Main {
 
         moneyController.addExpand();
         moneyController.addIncome();
-        moneyController.findAll();
+        List<Account> accounts = moneyController.findAll();
+        CalendarUtil calendarUtil = new CalendarUtil();
 
-
-        CalendarService calendarService = new CalendarService();
-
-        calendarService.setCurrentDate();
-        System.out.println(calendarService.getCurrentMonthMaxDay());
-        System.out.println(calendarService.getCurrentYear());
-        System.out.println(calendarService.getCurrentMonth());
-        System.out.println(calendarService.getCurrentDayOfMonth());
+        for (Account account : accounts) {
+            System.out.println(calendarUtil.getCurrentDate(account.getLocalDateTime()));
+            System.out.println(account.getBalance() + " " + account.getAccountStatus());
+        }
     }
 }
