@@ -6,14 +6,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class CalendarUtil {
-    private LocalDateTime localDateTime;
-    private LocalDate localDate;
-    private LocalTime localTime;
+    private final LocalDateTime localDateTime;
 
     public CalendarUtil() {
         this.localDateTime = LocalDateTime.now();
-        this.localDate = LocalDate.now();
-        this.localTime = LocalTime.now();
     }
 
     public int getCurrentYear() {
@@ -29,20 +25,14 @@ public class CalendarUtil {
     }
 
     public String getCurrentDate() {
-//        String[] dayOfWeeks = {" 월", " 화", " 수", " 목", " 금", " 토", " 일"};
-//        int idx = (localDateTime.getDayOfWeek().getValue() - 1) % dayOfWeeks.length;
         return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     public String getCurrentDate(LocalDateTime localDateTime) {
-//        String[] dayOfWeeks = {" 월", " 화", " 수", " 목", " 금", " 토", " 일"};
-//        int idx = (localDateTime.getDayOfWeek().getValue() - 1) % dayOfWeeks.length;
         return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     public LocalDateTime setCurrentDate(int year, int month, int day) {
-        localDate = LocalDate.of(year, month, day);
-        localDateTime = LocalDateTime.of(localDate, localTime);
-        return localDateTime;
+        return LocalDateTime.of(LocalDate.of(year, month, day), LocalTime.now());
     }
 }
