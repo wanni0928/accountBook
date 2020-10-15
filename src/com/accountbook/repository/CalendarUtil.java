@@ -29,15 +29,15 @@ public class CalendarUtil {
     }
 
     public String getCurrentDate() {
-        String[] dayOfWeeks = {" 월", " 화", " 수", " 목", " 금", " 토", " 일"};
-        int idx = (localDateTime.getDayOfWeek().getValue() - 1) % dayOfWeeks.length;
-        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + dayOfWeeks[idx];
+//        String[] dayOfWeeks = {" 월", " 화", " 수", " 목", " 금", " 토", " 일"};
+//        int idx = (localDateTime.getDayOfWeek().getValue() - 1) % dayOfWeeks.length;
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     public String getCurrentDate(LocalDateTime localDateTime) {
-        String[] dayOfWeeks = {" 월", " 화", " 수", " 목", " 금", " 토", " 일"};
-        int idx = (localDateTime.getDayOfWeek().getValue() - 1) % dayOfWeeks.length;
-        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + dayOfWeeks[idx];
+//        String[] dayOfWeeks = {" 월", " 화", " 수", " 목", " 금", " 토", " 일"};
+//        int idx = (localDateTime.getDayOfWeek().getValue() - 1) % dayOfWeeks.length;
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     public LocalDateTime setCurrentDate(int year, int month, int day) {

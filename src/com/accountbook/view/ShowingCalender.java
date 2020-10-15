@@ -39,6 +39,6 @@ public class ShowingCalender implements ShowingCalenderInterface{
     }
 
     public static void main(String[] args) {
-        new ShowingCalender();
+        new ShowingCalender().dailyView();
     }
 }
