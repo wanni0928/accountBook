@@ -3,10 +3,11 @@ package com.accountbook.controller;
 import com.accountbook.domain.Account;
 import com.accountbook.service.MoneyService;
 import com.accountbook.utils.CalendarUtil;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ScheduleControllerTest {
 
@@ -24,7 +25,8 @@ class ScheduleControllerTest {
 
         moneyController.addIncome();
         List<Account> dailyIncomeList = scheduleController.dailyIncome(year, month, day);
-        Assertions.assertEquals(dailyIncomeList.size(), 1);
+        assertEquals(dailyIncomeList.size(), 1);
+        assertEquals(dailyIncomeList.get(0).getId(), 1L);
     }
 
     @Test
