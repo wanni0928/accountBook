@@ -24,7 +24,7 @@ public class MyBatisMoneyRepository implements MoneyRepository {
 
     @Override
     public Optional<Account> findByTitle(String name) {
-        return Optional.empty();
+        return findAll().stream().filter(account -> account.getAccountTitle().equals(name)).findAny();
     }
 
     @Override
