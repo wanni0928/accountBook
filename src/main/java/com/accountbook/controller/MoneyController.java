@@ -1,8 +1,6 @@
 package com.accountbook.controller;
 
 import com.accountbook.domain.Account;
-import com.accountbook.domain.AccountStatus;
-import com.accountbook.domain.Category;
 import com.accountbook.service.MoneyService;
 
 import java.time.LocalDateTime;
@@ -18,24 +16,24 @@ public class MoneyController {
     /*소비 추가*/
     public void addExpand() {
         Account account = new Account();
-        account.setTitle("테스트제목");
-        account.setContent("의류");
-        account.setBalance(10000);
-        account.setAccountStatus(AccountStatus.EXPAND);
-        account.setCategory(Category.CLOTH);
-        account.setLocalDateTime(LocalDateTime.now());
+        account.setAccountTitle("테스트제목");
+        account.setAccountContent("의류");
+        account.setAccountBalance(10000);
+        account.setAccountStatus("소비");
+        account.setCategory("의휴");
+        account.setAccountDate(LocalDateTime.now());
         moneyService.addExpand(account);
     }
 
     /*수입 추가*/
     public void addIncome() {
         Account account = new Account();
-        account.setTitle("테스트제목");
-        account.setContent("테스트 내용. 테스트 내용.");
-        account.setBalance(20000);
-        account.setAccountStatus(AccountStatus.INCOME);
-        account.setCategory(Category.BEAUTY);
-        account.setLocalDateTime(LocalDateTime.now());
+        account.setAccountTitle("테스트제목");
+        account.setAccountContent("테스트 내용. 테스트 내용.");
+        account.setAccountBalance(20000);
+        account.setAccountStatus("수입");
+        account.setCategory("에고...");
+        account.setAccountDate(LocalDateTime.now());
         moneyService.addExpand(account);
     }
 

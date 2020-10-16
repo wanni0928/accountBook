@@ -1,7 +1,6 @@
 package com.accountbook.controller;
 
 import com.accountbook.domain.Account;
-import com.accountbook.domain.AccountStatus;
 import com.accountbook.service.MoneyService;
 import com.accountbook.utils.CalendarUtil;
 
@@ -22,8 +21,8 @@ public class ScheduleController {
         //yyyy-MM-dd
         String compareDate = String.format("%d-%d-%d", year, month, day);
         return moneyService.findAll().stream().filter(account ->
-                calendarUtil.getCurrentDate(account.getLocalDateTime())
-                        .equals(compareDate) && account.getAccountStatus() == AccountStatus.INCOME
+                calendarUtil.getCurrentDate(account.getAccountDate())
+                        .equals(compareDate) && account.getAccountStatus().equals("수입")
         ).collect(Collectors.toList());
     }
 
@@ -32,8 +31,8 @@ public class ScheduleController {
         //yyyy-MM-dd
         String compareDate = String.format("%d-%d-%d", year, month, day);
         return moneyService.findAll().stream().filter(account ->
-                calendarUtil.getCurrentDate(account.getLocalDateTime())
-                        .equals(compareDate) && account.getAccountStatus() == AccountStatus.EXPAND
+                calendarUtil.getCurrentDate(account.getAccountDate())
+                        .equals(compareDate) && account.getAccountStatus().equals("소비")
         ).collect(Collectors.toList());
     }
 }

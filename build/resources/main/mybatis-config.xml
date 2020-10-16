@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties>
+        <property name="hostname" value="127.0.0.1" />
+        <property name="portnumber" value="3306" />
+        <property name="database" value="accountbook" />
+        <property name="username" value="wanni" />
+        <property name="password" value="wanni0928" />
+    </properties>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/accountbook?characterEncoding=UTF8&amp;serverTimezone=UTC"/>
+                <property name="username" value="wanni"/>
+                <property name="password" value="wanni0928"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="./mapper/account.xml"/>
+    </mappers>
+</configuration>

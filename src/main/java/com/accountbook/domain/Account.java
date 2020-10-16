@@ -7,37 +7,37 @@ import java.time.LocalDateTime;
 
 @Getter @Setter
 public class Account {
-    private Long id;
-    private String title;
-    private String content;
-    private int balance;
-    private LocalDateTime localDateTime;
-    private AccountStatus accountStatus;
-    private Category category;
+    private Long accountId;
+    private String accountTitle;
+    private String accountContent;
+    private int accountBalance;
+    private String accountStatus;
+    private String category;
+    private LocalDateTime accountDate;
 
     public Account() {
     }
 
-    public Account(Long id, String title, String content, int balance, LocalDateTime localDateTime, AccountStatus accountStatus, Category category) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.balance = balance;
-        this.localDateTime = localDateTime;
+    public Account(Long accountId, String accountTitle, String accountContent, int accountBalance, String accountStatus, String category, LocalDateTime accountDate) {
+        this.accountId = accountId;
+        this.accountTitle = accountTitle;
+        this.accountContent = accountContent;
+        this.accountBalance = accountBalance;
         this.accountStatus = accountStatus;
         this.category = category;
+        this.accountDate = accountDate;
     }
 
     @Override
     public String toString() {
         return "Account{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", balance=" + balance +
-                ", localDateTime=" + localDateTime +
-                ", accountStatus=" + accountStatus +
-                ", category=" + category +
+                "accountId=" + accountId +
+                ", accountTitle='" + accountTitle + '\'' +
+                ", accountContent='" + accountContent + '\'' +
+                ", accountBalance=" + accountBalance +
+                ", accountStatus='" + accountStatus + '\'' +
+                ", category='" + category + '\'' +
+                ", accountDate=" + accountDate +
                 '}';
     }
 }

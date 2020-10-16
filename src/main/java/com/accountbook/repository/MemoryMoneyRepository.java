@@ -10,14 +10,14 @@ public class MemoryMoneyRepository implements MoneyRepository {
 
     @Override
     public Account save(Account account) {
-        account.setId(++sequence);
-        store.put(account.getId(), account);
+        account.setAccountId(++sequence);
+        store.put(account.getAccountId(), account);
         return account;
     }
 
     @Override
     public Optional<Account> findByTitle(String name) {
-        return store.values().stream().filter(account -> account.getTitle().equals(name)).findAny();
+        return store.values().stream().filter(account -> account.getAccountTitle().equals(name)).findAny();
     }
 
     @Override
