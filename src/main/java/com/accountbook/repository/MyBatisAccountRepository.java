@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class MyBatisAccountRepository implements AccountRepository {
     private SqlSession session;
-    SqlSessionFactory sqlSessionFactory;
+    private final SqlSessionFactory sqlSessionFactory;
 
     public MyBatisAccountRepository() throws IOException {
         sqlSessionFactory = MyBatisSqlSessionFactory.getInstance();
@@ -60,22 +60,22 @@ public class MyBatisAccountRepository implements AccountRepository {
     }
 
     @Override
-    public int update(Account account) {
+    public Long update(Account account) {
         session = sqlSessionFactory.openSession();
         int updateId = session.update("Account.updateById", account);
         session.commit();
         session.close();
 
-        return updateId;
+        return Long.valueOf(updateId);
     }
 
     @Override
-    public int deleteById(Long id) {
+    public Long deleteById(Long id) {
         session = sqlSessionFactory.openSession();
         int deletedId = session.delete("Account.deleteById", id);
         session.commit();
         session.close();
 
-        return deletedId;
+        return Long.valueOf(deletedId);
     }
 }
