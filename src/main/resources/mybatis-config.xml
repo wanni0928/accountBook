@@ -16,7 +16,7 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/accountbook?characterEncoding=UTF8&amp;serverTimezone=UTC"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/accountbook?characterEncoding=UTF8&amp;serverTimezone=Asia/Seoul"/>
                 <property name="username" value="wanni"/>
                 <property name="password" value="wanni0928"/>
             </dataSource>
