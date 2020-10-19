@@ -1,16 +1,16 @@
 package com.accountbook.controller;
 
 import com.accountbook.domain.Account;
-import com.accountbook.service.MoneyService;
+import com.accountbook.service.AccountService;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class MoneyController {
-    private final MoneyService moneyService;
+public class AccountController {
+    private final AccountService accountService;
 
-    public MoneyController(MoneyService moneyService) {
-        this.moneyService = moneyService;
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
     }
 
     /*소비 추가*/
@@ -22,7 +22,7 @@ public class MoneyController {
         account.setAccountStatus("소비");
         account.setCategory("의휴");
         account.setAccountDate(LocalDateTime.now());
-        moneyService.addExpand(account);
+        accountService.addExpand(account);
     }
 
     /*수입 추가*/
@@ -34,15 +34,26 @@ public class MoneyController {
         account.setAccountStatus("수입");
         account.setCategory("에고...");
         account.setAccountDate(LocalDateTime.now());
-        moneyService.addExpand(account);
+        accountService.addExpand(account);
+    }
+    // 목록 호춯
+    public List<Account> findAll() {
+        return accountService.findAll();
     }
 
-    public List<Account> findAll() {
-        return moneyService.findAll();
+    // update account - 고치고 싶은 번호를 CUI로 작성.
+    public void updateAccount(Long id) {
+        Account account = accountService.findById(id);
+        account.setAccountId(1L);
+        account.setAccountBalance(1);
+        account.setAccountContent("내용수정2");
+        account.setAccountTitle("제목수정2");
+        accountService.updateById(account);
+
     }
 
     /*삭제*/
-    public void delete(){
-
+    public void delete(Long id){
+        accountService.deleteById(id);
     }
 }

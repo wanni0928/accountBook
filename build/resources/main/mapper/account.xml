@@ -3,7 +3,36 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Account">
+    <!--create-->
+    <insert id="save" parameterType="com.accountbook.domain.Account" useGeneratedKeys="true">
+        insert into accounts (accountTitle, accountContent, accountBalance, accountStatus, category)
+            values (#{accountTitle}, #{accountContent}, #{accountBalance}, #{accountStatus}, #{category});
+    </insert>
+
+    <!--read-->
     <select id="findAll" resultType="com.accountbook.domain.Account">
         select * from accounts
     </select>
+    <select id="findById" parameterType="long" resultType="com.accountbook.domain.Account">
+        select * from accounts where accountId = #{id}
+    </select>
+    <select id="findByTitle" parameterType="string" resultType="com.accountbook.domain.Account">
+        select * from accounts where accountTitle = #{title}
+    </select>
+
+    <!--update-->
+    <update id="updateById" parameterType="com.accountbook.domain.Account" statementType="PREPARED">
+        update accounts set
+            accountTitle = #{accountTitle},
+            accountContent = #{accountContent},
+            accountBalance = #{accountBalance},
+            accountStatus = #{accountStatus},
+            category = #{category}
+        where accountId = #{accountId}
+    </update>
+
+    <!--delete-->
+    <delete id="deleteById" parameterType="long">
+        delete from accounts where accountId = #{id}
+    </delete>
 </mapper>
