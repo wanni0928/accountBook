@@ -46,8 +46,8 @@ public class AccountController {
         Account account = accountService.findById(id);
         account.setAccountId(1L);
         account.setAccountBalance(1);
-        account.setAccountContent("내용수정2");
-        account.setAccountTitle("제목수정2");
+        account.setAccountContent("내용수정3");
+        account.setAccountTitle("제목수정3");
         accountService.updateById(account);
 
     }
