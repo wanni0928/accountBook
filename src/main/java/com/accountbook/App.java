@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class App {
     public static void main(String[] args) throws IOException {
+        // AppConfig
         AccountRepository accountRepository = new MyBatisAccountRepository();
         AccountService accountService = new AccountService(accountRepository);
         AccountController accountController = new AccountController(accountService);
