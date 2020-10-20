@@ -15,7 +15,7 @@ class CategoryControllerTest {
     @Test
     void addCategory() throws IOException {
         CategoryController categoryController = new AppConfig().getCategoryController();
-        categoryController.addCategory(new Category("비상금", "수입"));
+        categoryController.addCategory(new Category("식사", "소비"));
     }
 
     @Test
@@ -29,6 +29,7 @@ class CategoryControllerTest {
     void findAll() throws IOException {
         CategoryController categoryController = new AppConfig().getCategoryController();
         List<Category> categories = categoryController.findAll();
+        System.out.println(categories);
     }
 
     @Test

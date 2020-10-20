@@ -16,7 +16,7 @@
             #{accountTitle},
             #{accountContent},
             #{accountBalance},
-            (select categoryName from category where categoryId = #{categoryId})
+            (select accountStatus from category where categoryId = #{categoryId})
         );
     </insert>
 
@@ -34,12 +34,14 @@
     <!--update-->
     <update id="updateById" parameterType="com.accountbook.domain.Account" statementType="PREPARED">
         update accounts set
+            categoryId = #{categoryId},
             accountTitle = #{accountTitle},
             accountContent = #{accountContent},
             accountBalance = #{accountBalance},
-            accountStatus = #{accountStatus},
-            category = #{category}
-        where accountId = #{accountId}
+            accountStatus = (
+            select accountStatus from category where categoryId = #{categoryId}
+        )
+        where accountId = 3;
     </update>
 
     <!--delete-->

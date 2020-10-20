@@ -20,16 +20,15 @@ insert into accounts (
 	categoryId, 
     accountTitle, 
     accountContent, 
-    accountBalance, 
+    accountBalance,
     accountStatus
 ) values (
 	1, 
     "미지정 제목", 
     "미지정 내용", 
     1,
-    (select categoryName from category where categoryId = 1)
+    (select accountStatus from category where categoryId = 1)
 );
-
 create table category (
 	categoryId int not null auto_increment,
     categoryName varchar(255),
