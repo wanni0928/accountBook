@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Category">
+    <!--create-->
+    <insert id="save" parameterType="com.accountbook.domain.Category" useGeneratedKeys="true">
+        insert into category (
+        categoryName, AccountStatus
+        ) select
+        #{categoryName}, #{AccountStatus}
+        from category where not exists(
+        select categoryName from category where categoryName = #{categoryName}
+        ) limit 1
+    </insert>
+
+    <!--read-->
+    <select id="findAll" resultType="com.accountbook.domain.Category">
+        select * from category
+    </select>
+    <select id="findById" parameterType="long" resultType="com.accountbook.domain.Category">
+        select * from category where categoryId = #{id}
+    </select>
+    <select id="findByTitle" parameterType="string" resultType="com.accountbook.domain.Category">
+        select * from category where categoryName = #{title}
+    </select>
+
+    <!--update-->
+    <update id="updateById" parameterType="com.accountbook.domain.Category">
+        update category set
+            categoryName = #{categoryName}
+        where categoryId = #{categoryId}
+    </update>
+
+    <!--delete-->
+    <delete id="deleteById" parameterType="long">
+        delete from category where categoryId = #{id}
+    </delete>
+</mapper>

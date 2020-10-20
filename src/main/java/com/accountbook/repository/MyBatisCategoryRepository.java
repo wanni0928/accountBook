@@ -1,6 +1,6 @@
 package com.accountbook.repository;
 
-import com.accountbook.domain.Account;
+import com.accountbook.domain.Category;
 import com.accountbook.utils.factory.MyBatisSqlSessionFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -9,73 +9,65 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-public class MyBatisAccountRepository implements AccountRepository {
+public class MyBatisCategoryRepository implements CategoryRepository {
     private SqlSession session;
     private final SqlSessionFactory sqlSessionFactory;
 
-    public MyBatisAccountRepository() throws IOException {
+    public MyBatisCategoryRepository() throws IOException {
         sqlSessionFactory = MyBatisSqlSessionFactory.getInstance();
-//        session = sqlSessionFactory.openSession();
-    }
-
-
-    @Override
-    public int save(Account account) {
-        session = sqlSessionFactory.openSession();
-        int savedNum = session.insert("Account.save", account);
-        session.commit();
-        session.close();
-
-        return savedNum;
     }
 
     @Override
-    public Optional<Account> findById(Long id) {
+    public int save(Category category) {
         session = sqlSessionFactory.openSession();
-        Optional<Account> optional = Optional.ofNullable(session.selectOne("Account.findById", id));
+        int saveNum = session.insert("Category.save", category);
         session.commit();
         session.close();
-
-        return optional;
+        return saveNum;
     }
 
     @Override
-    public List<Account> findByTitle(String title) {
+    public Optional<Category> findById(Long id) {
         session = sqlSessionFactory.openSession();
-        List<Account> accounts = session.selectList("Account.findByTitle", title);
+        Optional<Category> category = Optional.ofNullable(session.selectOne("Category.findById", id));
         session.commit();
         session.close();
-
-        return accounts;
+        return category;
     }
 
     @Override
-    public List<Account> findAll() {
+    public List<Category> findByTitle(String categoryName) {
         session = sqlSessionFactory.openSession();
-        List<Account> accounts = session.selectList("Account.findAll");
+        List<Category> categories = session.selectList("Category.findByTitle", categoryName);
         session.commit();
         session.close();
-
-        return accounts;
+        return categories;
     }
 
     @Override
-    public int update(Account account) {
+    public List<Category> findAll() {
         session = sqlSessionFactory.openSession();
-        int updateId = session.update("Account.updateById", account);
+        List<Category> categories = session.selectList("Category.findAll");
         session.commit();
         session.close();
+        return categories;
+    }
 
-        return updateId;
+    @Override
+    public int update(Category category) {
+        session = sqlSessionFactory.openSession();
+        int update = session.update("Category.updateById", category);
+        session.commit();
+        session.close();
+        return update;
     }
 
     @Override
     public int deleteById(Long id) {
         session = sqlSessionFactory.openSession();
-        int deletedId = session.delete("Account.deleteById", id);
+        int delete = session.delete("Category.deleteById", id);
         session.commit();
         session.close();
-
-        return deletedId;
+        return delete;
     }
 }

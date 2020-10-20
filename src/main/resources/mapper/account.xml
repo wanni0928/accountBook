@@ -5,8 +5,19 @@
 <mapper namespace="Account">
     <!--create-->
     <insert id="save" parameterType="com.accountbook.domain.Account" useGeneratedKeys="true">
-        insert into accounts (accountTitle, accountContent, accountBalance, accountStatus, category)
-            values (#{accountTitle}, #{accountContent}, #{accountBalance}, #{accountStatus}, #{category});
+        insert into accounts (
+            categoryId,
+            accountTitle,
+            accountContent,
+            accountBalance,
+            accountStatus
+        ) values (
+            #{categoryId},
+            #{accountTitle},
+            #{accountContent},
+            #{accountBalance},
+            (select categoryName from category where categoryId = #{categoryId})
+        );
     </insert>
 
     <!--read-->
