@@ -96,9 +96,9 @@ public class StatisticsController {
     }
 
     // 카테고리별 합계
-    public int categorySum(List<Account> accounts,String status, String category) {
-        return accounts.stream()
-                .filter(account -> account.getCategory().equals(category) && account.getAccountStatus().equals(status))
-                .mapToInt(Account::getAccountBalance).sum();
-    }
+//    public int categorySum(List<Account> accounts,String status, String category) {
+//        return accounts.stream()
+//                .filter(account -> account.getCategory().equals(category) && account.getAccountStatus().equals(status))
+//                .mapToInt(Account::getAccountBalance).sum();
+//    }
 }

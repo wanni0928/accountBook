@@ -1,8 +1,28 @@
 package com.accountbook.domain;
 
-public enum Category {
-    /*수입*/
-    SALARY, PIN_MONEY, BONUS, SIDE_JOB, INVEST, TEMP_INCOME,
-    /*지출*/
-    FOOD, DAILY_NECESSITIES, CLOTH, BEAUTY, ENTERTAINMENT, MEDICAL, EDUCATION, TAX, TRANSPORTAION
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
+public class Category {
+    private Long categoryId;
+    private String categoryName;
+    private String AccountStatus;
+
+    public Category() {
+    }
+
+    public Category(String categoryName, String accountStatus) {
+        this.categoryName = categoryName;
+        AccountStatus = accountStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
+                ", AccountStatus='" + AccountStatus + '\'' +
+                '}';
+    }
 }

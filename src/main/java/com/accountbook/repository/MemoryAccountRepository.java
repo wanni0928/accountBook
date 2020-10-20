@@ -32,15 +32,15 @@ public class MemoryAccountRepository implements AccountRepository {
     }
 
     @Override
-    public Long update(Account account) {
+    public int update(Account account) {
 
-        return 1L;
+        return 1;
     }
 
     @Override
-    public Long deleteById(Long id) {
+    public int deleteById(Long id) {
         store.remove(id);
-        return 1L;
+        return 1;
     }
 
     public void clear() {

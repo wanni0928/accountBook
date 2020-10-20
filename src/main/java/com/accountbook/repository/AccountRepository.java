@@ -10,6 +10,6 @@ public interface AccountRepository {
     Optional<Account> findById(Long id);
     List<Account> findByTitle(String title);
     List<Account> findAll();
-    Long update(Account account);
-    Long deleteById(Long id);
+    int update(Account account);
+    int deleteById(Long id);
 }
