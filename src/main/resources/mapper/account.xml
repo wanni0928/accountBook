@@ -30,6 +30,12 @@
     <select id="findByTitle" parameterType="string" resultType="com.accountbook.domain.Account">
         select * from accounts where accountTitle = #{title}
     </select>
+    <select id="findByMonth" parameterType="map" resultType="com.accountbook.domain.Account">
+        select * from accounts where month(accountDate) = #{month} and year(accountDate) = #{year};
+    </select>
+    <select id="findByDay" parameterType="map" resultType="com.accountbook.domain.Account">
+        select * from accounts where day(accountDate) = #{day} and month(accountDate) = #{month} and year(accountDate) = #{year};
+    </select>
 
     <!--update-->
     <update id="updateById" parameterType="com.accountbook.domain.Account" statementType="PREPARED">

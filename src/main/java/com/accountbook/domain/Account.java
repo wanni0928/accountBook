@@ -17,4 +17,17 @@ public class Account {
 
     public Account() {
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountId=" + accountId +
+                ", categoryId=" + categoryId +
+                ", accountTitle='" + accountTitle + '\'' +
+                ", accountContent='" + accountContent + '\'' +
+                ", accountBalance=" + accountBalance +
+                ", accountStatus='" + accountStatus + '\'' +
+                ", accountDate=" + accountDate +
+                '}';
+    }
 }

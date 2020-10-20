@@ -67,5 +67,15 @@ insert into category (categoryName, AccountStatus) values ("교통", "소비");
 select * from category;
 select * from accounts;
 
+update accounts set
+			categoryId = 3,
+            accountTitle = "수정된 제목",
+            accountContent = "수정된 내용",
+            accountBalance = 1,
+            accountStatus = (
+				select accountStatus from category where categoryId = 3
+                )
+where accountId = 3;
+
 drop table category;
 drop table accounts;

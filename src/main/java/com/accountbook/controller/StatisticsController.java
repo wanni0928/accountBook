@@ -1,10 +1,12 @@
 package com.accountbook.controller;
 
 import com.accountbook.domain.Account;
+import com.accountbook.domain.Category;
 import com.accountbook.service.AccountService;
 import com.accountbook.utils.CalendarUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class StatisticsController {
@@ -26,6 +28,43 @@ public class StatisticsController {
             }else {
                 total -= account.getAccountBalance();
             }
+        }
+        return total;
+    }
+
+    // 월별 전체 합계
+    public int monthlyTotalSum(Map<String, Integer> map, int year, int month) {
+        int total = 0;
+        List<Account> accounts = accountService.findByMonth(map, year, month);
+        for (Account account : accounts) {
+            if(account.getAccountStatus().equals("수입")){
+                total += account.getAccountBalance();
+            }else {
+                total -= account.getAccountBalance();
+            }
+        }
+        return total;
+    }
+
+    // 일별 전체 합계
+    public int dailyTotalSum(Map<String, Integer> map, int year, int month, int day) {
+        int total = 0;
+        List<Account> accounts = accountService.findByDay(map, year, month, day);
+        for (Account account : accounts) {
+            if(account.getAccountStatus().equals("수입")){
+                total += account.getAccountBalance();
+            }else {
+                total -= account.getAccountBalance();
+            }
+        }
+        return total;
+    }
+
+    // 분야별 수입 합계
+    public int totalCategorySum(Map<String, List<Account>> map, Category category) {
+        int total = map.get(category.getCategoryName()).stream().mapToInt(Account::getAccountBalance).sum();
+        if(category.getAccountStatus().equals("소비")){
+            total *= -1;
         }
         return total;
     }
