@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.accountbook.controller.StatisticsControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-19T11:04:17" hostname="DESKTOP-HDALO7H" time="2.479">
-  <properties/>
-  <testcase name="categorySum()" classname="com.accountbook.controller.StatisticsControllerTest" time="2.479"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
