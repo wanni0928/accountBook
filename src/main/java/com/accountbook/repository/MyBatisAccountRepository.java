@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class MyBatisAccountRepository implements AccountRepository {
@@ -56,6 +57,29 @@ public class MyBatisAccountRepository implements AccountRepository {
         session.commit();
         session.close();
 
+        return accounts;
+    }
+
+    @Override
+    public List<Account> findByMonth(Map<String, Integer> map, int year, int month) {
+        session = sqlSessionFactory.openSession();
+        map.put("year", year);
+        map.put("month", month);
+        List<Account> accounts = session.selectList("Account.findByMonth", map);
+        session.commit();
+        session.close();
+        return accounts;
+    }
+
+    @Override
+    public List<Account> findByDay(Map<String, Integer> map, int year, int month, int day) {
+        session = sqlSessionFactory.openSession();
+        map.put("year", year);
+        map.put("month", month);
+        map.put("day", day);
+        List<Account> accounts = session.selectList("Account.findByDay", map);
+        session.commit();
+        session.close();
         return accounts;
     }
 

@@ -5,6 +5,7 @@ import com.accountbook.repository.AccountRepository;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class AccountService {
     private final AccountRepository accountRepository;
@@ -28,6 +29,14 @@ public class AccountService {
 
     public List<Account> findAll() {
         return accountRepository.findAll();
+    }
+
+    public List<Account> findByMonth(Map<String, Integer> map,int year, int month) {
+        return accountRepository.findByMonth(map, year, month);
+    }
+
+    public List<Account> findByDay(Map<String, Integer> map, int year, int month, int day) {
+        return accountRepository.findByDay(map, year, month, day);
     }
 
     public void updateById(Account account) {
