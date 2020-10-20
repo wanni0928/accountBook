@@ -14,14 +14,7 @@ public class AccountController {
     }
 
     /*소비 추가*/
-    public void addExpand() {
-        Account account = new Account();
-        account.setAccountTitle("테스트제목");
-        account.setAccountContent("의류");
-        account.setAccountBalance(10000);
-        account.setAccountStatus("소비");
-//        account.setCategory("의휴");
-        account.setAccountDate(LocalDateTime.now());
+    public void addExpand(Account account) {
         accountService.addExpand(account);
     }
 
@@ -42,14 +35,14 @@ public class AccountController {
     }
 
     // update account - 고치고 싶은 번호를 CUI로 작성.
-    public void updateAccount(Long id) {
-        Account account = accountService.findById(id);
-        account.setAccountId(1L);
-        account.setAccountBalance(1);
-        account.setAccountContent("내용수정3");
-        account.setAccountTitle("제목수정3");
-        accountService.updateById(account);
+    public void updateAccount(Long accountId, Long categoryId, String title, String content, int balance) {
+        Account account = accountService.findById(accountId);
+        account.setCategoryId(categoryId);
+        account.setAccountTitle(title);
+        account.setAccountContent(content);
+        account.setAccountBalance(balance);
 
+        accountService.updateById(account);
     }
 
     /*삭제*/
