@@ -115,10 +115,11 @@ class StatisticsControllerTest {
         List<Account> accounts = accountController.findAll();
         List<Category> categories = categoryController.findAll();
         Map<String, List<Account>> categoryTotalList = accountController.categoryTotalList(categories, accounts);
-
-        int categorySum = statisticsController.totalCategorySum(categoryTotalList, categories.get(3));
-        System.out.println(categories.get(3));
-        int categoryAVG = statisticsController.totalAvg(categorySum, categoryTotalList.get(categories.get(3).getCategoryName()).size());
+        Category category = categories.get(6);
+        System.out.println(category.getCategoryName());
+        System.out.println(category.getAccountStatus());
+        int categorySum = statisticsController.totalCategorySum(categoryTotalList, category);
+        int categoryAVG = statisticsController.totalAvg(categorySum, categoryTotalList.get(category.getCategoryName()).size());
         System.out.println(categoryAVG);
     }
 }
