@@ -1,5 +1,6 @@
 package com.accountbook.domain;
 
+import com.accountbook.domain.form.CategoryForm;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,14 +8,19 @@ import lombok.Setter;
 public class Category {
     private Long categoryId;
     private String categoryName;
-    private String AccountStatus;
+    private String accountStatus;
 
     public Category() {
     }
 
     public Category(String categoryName, String accountStatus) {
         this.categoryName = categoryName;
-        AccountStatus = accountStatus;
+        this.accountStatus = accountStatus;
+    }
+
+    public void createCategory(CategoryForm categoryForm) {
+        this.categoryName = categoryForm.getCategoryName();
+        this.accountStatus = categoryForm.getAccountStatus();
     }
 
     @Override
@@ -22,7 +28,7 @@ public class Category {
         return "Category{" +
                 "categoryId=" + categoryId +
                 ", categoryName='" + categoryName + '\'' +
-                ", AccountStatus='" + AccountStatus + '\'' +
+                ", AccountStatus='" + accountStatus + '\'' +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
 package com.accountbook.client.router.print.account;
 
-public interface reportAccount {
+public interface report {
     // 연간 수입, 지출 리포트
     void showAnnualReport();
 
