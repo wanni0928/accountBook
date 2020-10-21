@@ -21,14 +21,27 @@ insert into accounts (
     accountTitle, 
     accountContent, 
     accountBalance,
-    accountStatus
-) values (
-	1, 
-    "미지정 제목", 
-    "미지정 내용", 
-    1,
-    (select accountStatus from category where categoryId = 1)
-);
+    accountStatus,
+    accountDate
+) values (3, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 3), '2020-09-20 18:18:18'),
+(3, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 3), '2020-09-20 18:18:18'),
+(4, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 4), '2020-09-20 18:18:18'),
+(7, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 7), '2020-09-20 18:18:18'),
+(9, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 9), '2020-09-20 18:18:18'),
+(10, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 10), '2020-09-20 18:18:18'),
+(11, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 11), '2020-09-20 18:18:18'),
+(12, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 12), '2020-09-20 18:18:18'),
+(15, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 15), '2020-09-20 18:18:18'),
+(14, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 14), '2020-09-20 18:18:18'),
+(8, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 8), '2020-09-20 18:18:18'),
+(2, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 2), '2020-09-20 18:18:18'),
+(5, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 5), '2020-09-20 18:18:18'),
+(3, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 3), '2020-09-20 18:18:18'),
+(2, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 2), '2020-09-20 18:18:18'),
+(11, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 11), '2020-09-20 18:18:18'),
+(12, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 12), '2020-09-20 18:18:18'),
+(3, "미지정 제목", "미지정 내용", 12000,(select accountStatus from category where categoryId = 3), '2020-09-20 18:18:18');
+
 create table category (
 	categoryId int not null auto_increment,
     categoryName varchar(255),
@@ -63,9 +76,10 @@ insert into category (categoryName, AccountStatus) values ("의료비", "소비"
 insert into category (categoryName, AccountStatus) values ("교육비", "소비");
 insert into category (categoryName, AccountStatus) values ("공공요금", "소비");
 insert into category (categoryName, AccountStatus) values ("교통", "소비");
-
-select * from category;
 select * from accounts;
+select * from category;
+select * from accounts where day(accountDate) = 20 and month(accountDate) = 9 and year(accountDate) = 2020;
+select month(accountDate) from accounts;
 
 update accounts set
 			categoryId = 3,
@@ -77,5 +91,4 @@ update accounts set
                 )
 where accountId = 3;
 
-drop table category;
-drop table accounts;
+select sum(accountBalance) from accounts where categoryId = 3;
