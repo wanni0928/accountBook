@@ -1,11 +1,11 @@
 package com.accountbook.domain;
 
+import com.accountbook.domain.form.AccountForm;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Getter @Setter
+@Getter
 public class Account {
     private Long accountId;
     private Long categoryId;
@@ -16,6 +16,13 @@ public class Account {
     private LocalDateTime accountDate;
 
     public Account() {
+    }
+
+    public void createAccount(AccountForm accountForm) {
+        this.categoryId = accountForm.getCategoryId();
+        this.accountTitle = accountForm.getAccountTitle();
+        this.accountContent = accountForm.getAccountContent();
+        this.accountBalance = accountForm.getAccountBalance();
     }
 
     @Override

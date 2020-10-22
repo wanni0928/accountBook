@@ -2,9 +2,9 @@ package com.accountbook.controller;
 
 import com.accountbook.domain.Account;
 import com.accountbook.domain.Category;
+import com.accountbook.domain.form.AccountForm;
 import com.accountbook.service.AccountService;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,25 +17,32 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    /*소비 추가*/
-    public void addExpand(Account account) {
-        accountService.addExpand(account);
+    /* 소비, 수입 추가 */
+    public int addAccount(AccountForm accountForm) {
+        Account account = new Account();
+        account.createAccount(accountForm);
+
+        return accountService.addExpand(account);
     }
 
     /*수입 추가*/
     public void addIncome() {
-        Account account = new Account();
-        account.setAccountTitle("테스트제목");
-        account.setAccountContent("테스트 내용. 테스트 내용.");
-        account.setAccountBalance(20000);
-        account.setAccountStatus("수입");
-//        account.setCategory("에고...");
-        account.setAccountDate(LocalDateTime.now());
-        accountService.addExpand(account);
+//        Account account = new Account();
+//        account.setAccountTitle("테스트제목");
+//        account.setAccountContent("테스트 내용. 테스트 내용.");
+//        account.setAccountBalance(20000);
+//        account.setAccountStatus("수입");
+////        account.setCategory("에고...");
+//        account.setAccountDate(LocalDateTime.now());
+//        accountService.addExpand(account);
     }
     // 목록 호춯
     public List<Account> findAll() {
         return accountService.findAll();
+    }
+
+    public Account findById(Long id) {
+        return accountService.findById(id);
     }
 
     // 월별 목록 호출
@@ -60,18 +67,13 @@ public class AccountController {
 
 
    // update account - 고치고 싶은 번호를 CUI로 작성.
-    public void updateAccount(Long accountId, Long categoryId, String title, String content, int balance) {
-        Account account = accountService.findById(accountId);
-        account.setCategoryId(categoryId);
-        account.setAccountTitle(title);
-        account.setAccountContent(content);
-        account.setAccountBalance(balance);
-
-        accountService.updateById(account);
+    public int updateAccount(Account account, AccountForm accountForm) {
+        account.createAccount(accountForm);
+        return accountService.updateById(account);
     }
 
     /*삭제*/
-    public void delete(Long id){
-        accountService.deleteById(id);
+    public int delete(Long id){
+        return accountService.deleteById(id);
     }
 }

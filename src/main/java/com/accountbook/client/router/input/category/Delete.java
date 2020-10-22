@@ -1,4 +1,5 @@
 package com.accountbook.client.router.input.category;
 
-public interface createCategory {
+public interface Delete {
+    boolean delete(Long id);
 }

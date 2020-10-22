@@ -8,7 +8,7 @@
         insert into category (
         categoryName, AccountStatus
         ) select
-        #{categoryName}, #{AccountStatus}
+        #{categoryName}, #{accountStatus}
         from category where not exists(
         select categoryName from category where categoryName = #{categoryName}
         ) limit 1

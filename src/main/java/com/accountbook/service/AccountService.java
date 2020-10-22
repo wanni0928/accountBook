@@ -15,8 +15,8 @@ public class AccountService {
     }
 
     /* 수입/지출 추가*/
-    public void addExpand(Account account) {
-        accountRepository.save(account);
+    public int addExpand(Account account) {
+        return accountRepository.save(account);
     }
 
     public Account findById(Long id) {
@@ -39,12 +39,12 @@ public class AccountService {
         return accountRepository.findByDay(map, year, month, day);
     }
 
-    public void updateById(Account account) {
-        accountRepository.update(account);
+    public int updateById(Account account) {
+        return accountRepository.update(account);
     }
 
     /*목록 지우기*/
-    public void deleteById(Long id) {
-        accountRepository.deleteById(id);
+    public int deleteById(Long id) {
+        return accountRepository.deleteById(id);
     }
 }

@@ -2,6 +2,7 @@ package com.accountbook;
 
 import com.accountbook.controller.AccountController;
 import com.accountbook.controller.CategoryController;
+import com.accountbook.controller.SearchController;
 import com.accountbook.controller.StatisticsController;
 import com.accountbook.repository.AccountRepository;
 import com.accountbook.repository.CategoryRepository;
@@ -25,7 +26,7 @@ public class AppConfig {
         accountService = getAccountService();
         categoryRepository = getCategoryRepository();
         categoryService = getCategoryService();
-        calendarUtil = new CalendarUtil();
+        calendarUtil = getCalendarUtil();
     }
 
     private CategoryService getCategoryService() {
@@ -55,5 +56,13 @@ public class AppConfig {
 
     public StatisticsController getStatisticsController() {
         return new StatisticsController(calendarUtil, accountService);
+    }
+
+    public SearchController getSearchController() {
+        return new SearchController(accountService, calendarUtil, categoryService);
+    }
+
+    public CalendarUtil getCalendarUtil() {
+        return new CalendarUtil();
     }
 }

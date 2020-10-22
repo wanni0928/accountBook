@@ -47,7 +47,7 @@
             accountStatus = (
             select accountStatus from category where categoryId = #{categoryId}
         )
-        where accountId = 3;
+        where accountId = #{accountId};
     </update>
 
     <!--delete-->
