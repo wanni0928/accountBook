@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface AccountRepository {
     int save(Account account);
     Optional<Account> findById(Long id);
-    List<Account> findByTitle(String title);
+    List<Account> findByTitle(String accountTitle);
     List<Account> findAll();
     List<Account> findByMonth(Map<String, Integer> map, int year, int month);
     List<Account> findByDay(Map<String, Integer> map, int year, int month, int day);

@@ -1,6 +1,3 @@
-
-J<입력페이지> 이용하고 싶은 메뉴번호를 입력해주세요.
-1. 입력하기
-2. 수정하기
-3. 삭제하기
-
+�Account{accountId=1, categoryId=3, accountTitle='테스트 제목', accountContent='테스트 가계부 내용', accountBalance=20000, accountStatus='수입', accountDate=2020-10-20T18:30:31}
+�Account{accountId=2, categoryId=2, accountTitle='테스트 제목', accountContent='테스트 가계부 내용', accountBalance=10000, accountStatus='수입', accountDate=2020-10-20T18:30:31}
+�Account{accountId=4, categoryId=7, accountTitle='테스트 제목', accountContent='테스트 가계부 내용', accountBalance=20000, accountStatus='소비', accountDate=2020-10-20T18:35}

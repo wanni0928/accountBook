@@ -5,7 +5,7 @@ public interface Search {
     void findByTitle();
 
     // 가계부 내용으로 검색
-    void findBySearch();
+    void findByContent();
 
     // 가계부 카테고리로 검색
     void searchByCategory();

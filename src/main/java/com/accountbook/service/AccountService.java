@@ -23,8 +23,8 @@ public class AccountService {
         return accountRepository.findById(id).orElse(null);
     }
 
-    public List<Account> findByTitle(String title) {
-        return accountRepository.findByTitle(title);
+    public List<Account> findByTitle(String accountTitle) {
+        return accountRepository.findByTitle(accountTitle);
     }
 
     public List<Account> findAll() {

@@ -3,6 +3,7 @@ package com.accountbook.client.router.input.account;
 import com.accountbook.client.cache.Cache;
 import com.accountbook.client.cache.DomainType;
 import com.accountbook.controller.AccountController;
+import com.accountbook.controller.CategoryController;
 import com.accountbook.domain.Account;
 import com.accountbook.domain.Category;
 import com.accountbook.domain.form.AccountForm;
@@ -13,13 +14,15 @@ import java.util.Scanner;
 
 public class InputAccount implements Create, Delete, Update {
     private final AccountController accountController;
+    private final CategoryController categoryController;
     private final Scanner scanner;
     private final Cache cache;
     private List<Account> accounts = new ArrayList<>();
     private List<Category> categories = new ArrayList<>();
 
-    public InputAccount(AccountController accountController, Scanner scanner, Cache cache) {
+    public InputAccount(AccountController accountController, CategoryController categoryController, Scanner scanner, Cache cache) {
         this.accountController = accountController;
+        this.categoryController = categoryController;
         this.scanner = scanner;
         this.cache = cache;
     }
@@ -66,7 +69,6 @@ public class InputAccount implements Create, Delete, Update {
                 "1. 추가하기\n" +
                         "2. 수정하기\n" +
                         "3. 삭제하기\n";
-
 
         inputAccountMenu:
         while (true){
@@ -145,10 +147,10 @@ public class InputAccount implements Create, Delete, Update {
         String input = "";
         String keyWord = "";
         Account account;
-        accounts = (List<Account>) cache.getCache().get(DomainType.ACCOUNT.getKey());
-        categories = (List<Category>) cache.getCache().get(DomainType.CATEGORY.getKey());
+        accounts = accountController.findAll();
+        categories = categoryController.findAll();
         updateAccount:
-        while (!input.equals(-1)) {
+        while (true) {
             System.out.println("수정하기를 선택하셨습니다. 원하시는 기능을 번호로 입력 해주세요. 해당 메뉴를 취고하고 싶으면 -1을 입력하세요.");
             System.out.println("1. 작성 목록 확인하기");
             System.out.println("2. 가계부 수정 하기");

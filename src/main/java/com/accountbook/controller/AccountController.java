@@ -25,17 +25,6 @@ public class AccountController {
         return accountService.addExpand(account);
     }
 
-    /*수입 추가*/
-    public void addIncome() {
-//        Account account = new Account();
-//        account.setAccountTitle("테스트제목");
-//        account.setAccountContent("테스트 내용. 테스트 내용.");
-//        account.setAccountBalance(20000);
-//        account.setAccountStatus("수입");
-////        account.setCategory("에고...");
-//        account.setAccountDate(LocalDateTime.now());
-//        accountService.addExpand(account);
-    }
     // 목록 호춯
     public List<Account> findAll() {
         return accountService.findAll();
@@ -65,6 +54,10 @@ public class AccountController {
         return categoryReports;
     }
 
+    // 제목으로 검색하기
+    public List<Account> findByTitle(String accountTitle){
+        return accountService.findByTitle(accountTitle);
+    }
 
    // update account - 고치고 싶은 번호를 CUI로 작성.
     public int updateAccount(Account account, AccountForm accountForm) {

@@ -15,13 +15,13 @@ class CategoryControllerTest {
     @Test
     void addCategory() throws IOException {
         CategoryController categoryController = new AppConfig().getCategoryController();
-        categoryController.addCategory(new Category("식사", "소비"));
+//        categoryController.addCategory(new Category("식사", "소비"));
     }
 
     @Test
     void updateCategory() throws IOException {
         CategoryController categoryController = new AppConfig().getCategoryController();
-        categoryController.updateCategory(1L, new Category("월급", "수입"));
+//        categoryController.updateCategory(1L, new Category("월급", "수입"));
     }
 
     @Test

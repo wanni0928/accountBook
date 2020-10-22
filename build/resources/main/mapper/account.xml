@@ -28,7 +28,7 @@
         select * from accounts where accountId = #{id}
     </select>
     <select id="findByTitle" parameterType="string" resultType="com.accountbook.domain.Account">
-        select * from accounts where accountTitle = #{title}
+        select * from accounts where accountTitle like concat('%',#{accountTitle},'%')
     </select>
     <select id="findByMonth" parameterType="map" resultType="com.accountbook.domain.Account">
         select * from accounts where month(accountDate) = #{month} and year(accountDate) = #{year};

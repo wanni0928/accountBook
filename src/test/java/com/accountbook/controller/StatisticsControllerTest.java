@@ -16,8 +16,8 @@ class StatisticsControllerTest {
     @DisplayName("가계부 전 내용의 합계를 구한다. (소비면 -, 수입은 +)")
     void totalSum() throws IOException {
         StatisticsController statisticsController = new AppConfig().getStatisticsController();
-        int totalSum = statisticsController.totalSum();
-        System.out.println(totalSum);
+//        int totalSum = statisticsController.totalSum();
+//        System.out.println(totalSum);
     }
 
     @Test
@@ -66,7 +66,7 @@ class StatisticsControllerTest {
         CategoryController categoryController = new AppConfig().getCategoryController();
 
         List<Account> accounts = accountController.findAll();
-        int totalSum = statisticsController.totalSum();
+        int totalSum = statisticsController.totalSum(accounts);
 
         int totalAvg = statisticsController.totalAvg(totalSum, accounts.size());
         System.out.println(totalAvg);

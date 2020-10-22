@@ -4,7 +4,6 @@ import com.accountbook.client.cache.Cache;
 import com.accountbook.client.cache.DomainType;
 import com.accountbook.controller.AccountController;
 import com.accountbook.controller.CategoryController;
-import com.accountbook.controller.SearchController;
 import com.accountbook.controller.StatisticsController;
 import com.accountbook.domain.Account;
 import com.accountbook.domain.AccountStatus;
@@ -17,7 +16,6 @@ import java.util.Scanner;
 public class AccountsReports implements Report, Search, Menu {
     private final AccountController accountController;
     private final CategoryController categoryController;
-    private final SearchController searchController;
     private final StatisticsController statisticsController;
     private final Scanner scanner;
     private final Cache cache;
@@ -26,10 +24,9 @@ public class AccountsReports implements Report, Search, Menu {
     private final List<Account> accounts;
     private final List<Category> categories;
 
-    public AccountsReports(AccountController accountController, CategoryController categoryController, SearchController searchController, StatisticsController statisticsController, Scanner scanner, Cache cache, CalendarUtil calendarUtil) {
+    public AccountsReports(AccountController accountController, CategoryController categoryController, StatisticsController statisticsController, Scanner scanner, Cache cache, CalendarUtil calendarUtil) {
         this.accountController = accountController;
         this.categoryController = categoryController;
-        this.searchController = searchController;
         this.statisticsController = statisticsController;
         this.scanner = scanner;
         this.cache = cache;
@@ -50,6 +47,7 @@ public class AccountsReports implements Report, Search, Menu {
             System.out.println("1. 연간 보고서");
             System.out.println("2. 월간 보고서");
             System.out.println("3. 카테고리별 보고서");
+            System.out.println("4. 검색하기");
             input = scanner.nextLine();
             switch (input){
                 case "-1":
@@ -65,6 +63,9 @@ public class AccountsReports implements Report, Search, Menu {
                     break;
                 case "3":
                     showCategoryReport();
+                    break;
+                case "4":
+                    findByTitle();
                     break;
                 default:
                     System.out.println("뭐함..?");
@@ -316,11 +317,16 @@ public class AccountsReports implements Report, Search, Menu {
 
     @Override
     public void findByTitle() {
-
+        System.out.println("검색하고 싶은 제목을 입력하세요.");
+        String input = scanner.nextLine();
+        List<Account> accountsByTitle = accountController.findByTitle(input);
+        for (Account account : accountsByTitle) {
+            System.out.println("카테고리명 : " + getCategoryName(account.getAccountId()) + " / 제목 : " + account.getAccountTitle() + " / 내용 : " + account.getAccountTitle() + " / 액수 : " + account.getAccountBalance() + "원 " + " / 날짜 " + calendarUtil.getCurrentDate(account.getAccountDate()));
+        }
     }
 
     @Override
-    public void findBySearch() {
+    public void findByContent() {
 
     }
 
