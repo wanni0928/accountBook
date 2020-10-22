@@ -13,7 +13,8 @@ public class Category {
     public Category() {
     }
 
-    public Category(String categoryName, String accountStatus) {
+    public Category(Long categoryId, String categoryName, String accountStatus) {
+        this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.accountStatus = accountStatus;
     }
