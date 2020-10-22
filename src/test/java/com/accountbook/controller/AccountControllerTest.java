@@ -11,27 +11,15 @@ import java.util.Map;
 
 class AccountControllerTest {
 
-//    @Test
-//    void addExpand() throws IOException {
-//        AccountController accountController = new AppConfig().getAccountController();
-//        Account newAccount = new Account();
-//        newAccount.setCategoryId(7L);
-//        newAccount.setAccountTitle("테스트 제목");
-//        newAccount.setAccountContent("테스트 가계부 내용");
-//        newAccount.setAccountBalance(20000);
-//        accountController.addExpand(newAccount);
-//    }
-//
-//    @Test
-//    void addIncome() throws IOException {
-//        AccountController accountController = new AppConfig().getAccountController();
-//        Account newAccount = new Account();
-//        newAccount.setCategoryId(2L);
-//        newAccount.setAccountTitle("테스트 제목");
-//        newAccount.setAccountContent("테스트 가계부 내용");
-//        newAccount.setAccountBalance(10000);
-//        accountController.addExpand(newAccount);
-//    }
+    @Test
+    void findByTitle() throws IOException {
+        AccountController accountController = new AppConfig().getAccountController();
+        String accountTitle = "테스트";
+        List<Account> accounts = accountController.findByTitle(accountTitle);
+        for (Account account : accounts) {
+            System.out.println(account);
+        }
+    }
 
     @Test
     void findAll() throws IOException {

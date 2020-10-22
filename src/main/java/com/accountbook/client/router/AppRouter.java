@@ -6,7 +6,6 @@ import com.accountbook.client.router.input.category.InputCategory;
 import com.accountbook.client.router.print.account.AccountsReports;
 import com.accountbook.controller.AccountController;
 import com.accountbook.controller.CategoryController;
-import com.accountbook.controller.SearchController;
 import com.accountbook.controller.StatisticsController;
 import com.accountbook.utils.CalendarUtil;
 
@@ -15,16 +14,14 @@ import java.util.Scanner;
 public class AppRouter implements Router {
     private final AccountController accountController;
     private final CategoryController categoryController;
-    private final SearchController searchController;
     private final StatisticsController statisticsController;
     private final Scanner scanner;
     private final Cache cache;
     private final CalendarUtil calendarUtil;
 
-    public AppRouter(AccountController accountController, CategoryController categoryController, SearchController searchController, StatisticsController statisticsController, Scanner scanner, Cache cache, CalendarUtil calendarUtil) {
+    public AppRouter(AccountController accountController, CategoryController categoryController, StatisticsController statisticsController, Scanner scanner, Cache cache, CalendarUtil calendarUtil) {
         this.accountController = accountController;
         this.categoryController = categoryController;
-        this.searchController = searchController;
         this.statisticsController = statisticsController;
         this.scanner = scanner;
         this.cache = cache;
@@ -33,12 +30,12 @@ public class AppRouter implements Router {
 
     @Override
     public void showReports() {
-        new AccountsReports(accountController, categoryController, searchController, statisticsController, scanner, cache, calendarUtil);
+        new AccountsReports(accountController, categoryController, statisticsController, scanner, cache, calendarUtil);
     }
 
     @Override
     public void showAccountForms() {
-        new InputAccount(accountController, scanner, cache).showInputAccount();
+        new InputAccount(accountController, categoryController, scanner, cache).showInputAccount();
     }
 
     @Override

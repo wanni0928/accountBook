@@ -41,9 +41,9 @@ public class MyBatisAccountRepository implements AccountRepository {
     }
 
     @Override
-    public List<Account> findByTitle(String title) {
+    public List<Account> findByTitle(String accountTitle) {
         session = sqlSessionFactory.openSession();
-        List<Account> accounts = session.selectList("Account.findByTitle", title);
+        List<Account> accounts = session.selectList("Account.findByTitle", accountTitle);
         session.commit();
         session.close();
 
