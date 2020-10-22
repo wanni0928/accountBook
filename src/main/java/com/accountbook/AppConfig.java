@@ -26,7 +26,7 @@ public class AppConfig {
         accountService = getAccountService();
         categoryRepository = getCategoryRepository();
         categoryService = getCategoryService();
-        calendarUtil = new CalendarUtil();
+        calendarUtil = getCalendarUtil();
     }
 
     private CategoryService getCategoryService() {
@@ -60,5 +60,9 @@ public class AppConfig {
 
     public SearchController getSearchController() {
         return new SearchController(accountService, calendarUtil, categoryService);
+    }
+
+    public CalendarUtil getCalendarUtil() {
+        return new CalendarUtil();
     }
 }
