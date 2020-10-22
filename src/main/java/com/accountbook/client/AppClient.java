@@ -8,6 +8,7 @@ import com.accountbook.controller.AccountController;
 import com.accountbook.controller.CategoryController;
 import com.accountbook.controller.SearchController;
 import com.accountbook.controller.StatisticsController;
+import com.accountbook.utils.CalendarUtil;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -19,6 +20,7 @@ public class AppClient {
     private final Scanner scanner;
     private final SearchController searchController;
     private final StatisticsController statisticsController;
+    private final CalendarUtil calendarUtil;
     private final Cache cache;
 
     public AppClient() throws IOException {
@@ -27,12 +29,13 @@ public class AppClient {
         this.categoryController = appConfig.getCategoryController();
         this.searchController = appConfig.getSearchController();
         this.statisticsController = appConfig.getStatisticsController();
+        this.calendarUtil = appConfig.getCalendarUtil();
         this.scanner = new Scanner(System.in);
         this.cache = new MemoryCache(accountController, categoryController);
     }
 
     public void run(){
         cache.update();
-        new AppRouter(accountController, categoryController, searchController, statisticsController, scanner, cache).showMainMenu();
+        new AppRouter(accountController, categoryController, searchController, statisticsController, scanner, cache, calendarUtil).showMainMenu();
     };
 }
