@@ -1,7 +1,6 @@
 package com.accountbook.client.router.input.category;
 
 import com.accountbook.client.cache.Cache;
-import com.accountbook.client.cache.DomainType;
 import com.accountbook.controller.CategoryController;
 import com.accountbook.domain.Account;
 import com.accountbook.domain.AccountStatus;
@@ -62,7 +61,7 @@ public class InputCategory implements Create, Delete, Update {
 
         inputCategory:
         while (true){
-            String input = "";
+            String input;
             System.out.println("<카테고리 입력페이지> 이용하고 싶은 메뉴 번호를 입력 해주세요. 해당 메뉴를 종료하고 싶으면 -1을 입력하세요.");
             System.out.println("1. 추가하기");
             System.out.println("2. 수정하기");
@@ -98,8 +97,8 @@ public class InputCategory implements Create, Delete, Update {
 
     public void showCreateCategory() {
         CategoryForm categoryForm = new CategoryForm();
-        String input = "";
-        categories = (List<Category>) cache.getCache().get(DomainType.CATEGORY.getKey());
+        String input;
+        categories = categoryController.findAll();
 
         while (true) {
             String categoryName;
@@ -130,10 +129,9 @@ public class InputCategory implements Create, Delete, Update {
         String categoryName;
         String accountStatus;
         String input = "";
-        System.out.println(categories);
         while (true){
             System.out.println("카테고리 수정 할겁니다.목록을 보고 카테고리 번호를 쓰세요. 이 메뉴를 종료하고 싶으면 -1을 누르세요.");
-            categories = (List<Category>) cache.getCache().get(DomainType.CATEGORY.getKey());
+            categories = categoryController.findAll();
             CategoryForm categoryForm = new CategoryForm();
             System.out.println("소비 카테고리 목록");
             showCategoryList(categories, "소비");
@@ -167,19 +165,16 @@ public class InputCategory implements Create, Delete, Update {
             if(input.equals("q")){
                 update(id, category);
                 break;
-            };
+            }
         }
     }
     private void showDeleteCategory() {
 
         Long id;
-        String categoryName;
-        String accountStatus;
         String input = "";
         while (!input.equals("q")){
             System.out.println("카테고리 삭제 할겁니다.목록을 보고 카테고리 번호를 쓰세요. 이 메뉴를 종료하고 싶으면 -1을 누르세요.");
-            categories = (List<Category>) cache.getCache().get(DomainType.CATEGORY.getKey());
-            CategoryForm categoryForm = new CategoryForm();
+            categories = categoryController.findAll();
             System.out.println("소비 목록");
             showCategoryList(categories, AccountStatus.EXPAND.getKeyword());
             System.out.println("수입 목록");
@@ -208,7 +203,7 @@ public class InputCategory implements Create, Delete, Update {
             if(input.equals("q")) {
                 delete(id);
                 break;
-            };
+            }
         }
     }
 }

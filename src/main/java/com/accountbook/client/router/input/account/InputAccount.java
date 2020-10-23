@@ -1,7 +1,6 @@
 package com.accountbook.client.router.input.account;
 
 import com.accountbook.client.cache.Cache;
-import com.accountbook.client.cache.DomainType;
 import com.accountbook.controller.AccountController;
 import com.accountbook.controller.CategoryController;
 import com.accountbook.domain.Account;
@@ -16,7 +15,6 @@ public class InputAccount implements Create, Delete, Update {
     private final AccountController accountController;
     private final CategoryController categoryController;
     private final Scanner scanner;
-    private final Cache cache;
     private List<Account> accounts = new ArrayList<>();
     private List<Category> categories = new ArrayList<>();
 
@@ -24,7 +22,6 @@ public class InputAccount implements Create, Delete, Update {
         this.accountController = accountController;
         this.categoryController = categoryController;
         this.scanner = scanner;
-        this.cache = cache;
     }
 
     @Override
@@ -63,7 +60,7 @@ public class InputAccount implements Create, Delete, Update {
     }
 
     public void showInputAccount() {
-        String input = "";
+        String input;
         String guidance =
                 "\n<가계부 입력페이지> 이용하고 싶은 메뉴 번호를 입력 해주세요. 메뉴를 나가고 싶으시면 -1을 선택하세요.\n" +
                 "1. 추가하기\n" +
@@ -100,9 +97,9 @@ public class InputAccount implements Create, Delete, Update {
     }
 
     private void showDeleteForm() {
-        String input = "";
+        String input;
         Account account;
-        accounts = (List<Account>) cache.getCache().get(DomainType.ACCOUNT.getKey());
+        accounts = accountController.findAll();
         deleteAccount:
         while (true) {
             System.out.println("삭제하기를 선택하셨네요. 뭘 원하십니까? 숫자로 쓰세요. 해당 메뉴를 취소하고 싶으면 -1을 입력하세요");
@@ -130,7 +127,7 @@ public class InputAccount implements Create, Delete, Update {
                         if(input.equals("q")) {
                             delete(id);
                             break deleteAccount;
-                        };
+                        }
                     }else {
                         System.out.println("없는걸 어떻게 지워요 다시해요");
                     }
@@ -144,8 +141,8 @@ public class InputAccount implements Create, Delete, Update {
 
     private void showUpdateAccount() {
         AccountForm accountForm = new AccountForm();
-        String input = "";
-        String keyWord = "";
+        String input;
+        String keyWord;
         Account account;
         accounts = accountController.findAll();
         categories = categoryController.findAll();
@@ -229,10 +226,10 @@ public class InputAccount implements Create, Delete, Update {
 
     private void showCreateAccount() {
         AccountForm accountForm = new AccountForm();
-        String input = "";
+        String input;
         String keyWord = "";
         String[] formValues = new String[4];
-        categories = (List<Category>) cache.getCache().get(DomainType.CATEGORY.getKey());
+        categories = categoryController.findAll();
         String[] steps = {
                 "STEP1. 선택 하고 싶은 카테고리를 괄호안의 번호로 하세요.",
                 "STEP2. 가계부 제목을 입력 하세요",

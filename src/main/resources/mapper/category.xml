@@ -28,7 +28,8 @@
     <!--update-->
     <update id="updateById" parameterType="com.accountbook.domain.Category">
         update category set
-            categoryName = #{categoryName}
+            categoryName = #{categoryName},
+            AccountStatus = #{accountStatus}
         where categoryId = #{categoryId}
     </update>
 
