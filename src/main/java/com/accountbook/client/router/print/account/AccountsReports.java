@@ -48,6 +48,7 @@ public class AccountsReports implements Report, Search, Menu {
             System.out.println("2. 월간 보고서");
             System.out.println("3. 카테고리별 보고서");
             System.out.println("4. 검색하기");
+            System.out.println("5. 총 잔액");
             input = scanner.nextLine();
             switch (input){
                 case "-1":
@@ -66,6 +67,9 @@ public class AccountsReports implements Report, Search, Menu {
                     break;
                 case "4":
                     findByTitle();
+                    break;
+                case "5":
+                    showBalanceReport();
                     break;
                 default:
                     System.out.println("뭐함..?");
@@ -126,7 +130,7 @@ public class AccountsReports implements Report, Search, Menu {
 
         for (Account account : annualExpenseList) {
             String categoryName = getCategoryName(account.getCategoryId());
-            System.out.println("제목 : " + account.getAccountTitle() + " / 내용 : " + account.getAccountContent() + " / 카테고리 이름 : " + categoryName + " / 액수 : " + account.getAccountBalance() + "원");
+            System.out.println("제목 : " + account.getAccountTitle() + " / 내용 : " + account.getAccountContent() + " / 카테고리 이름 : " + categoryName + " / 액수 : " + account.getAccountBalance() + "원 " + calendarUtil.getCurrentDate(account.getAccountDate()));
         }
 
         System.out.println("연간 소비 합계 : " + sum);
@@ -151,7 +155,7 @@ public class AccountsReports implements Report, Search, Menu {
 
         for (Account account : annualIncomeList) {
             String categoryName = getCategoryName(account.getCategoryId());
-            System.out.println("제목 : " + account.getAccountTitle() + " / 내용 : " + account.getAccountContent() + " / 카테고리 이름 : " + categoryName + " / 액수 : " + account.getAccountBalance() + " 원");
+            System.out.println("제목 : " + account.getAccountTitle() + " / 내용 : " + account.getAccountContent() + " / 카테고리 이름 : " + categoryName + " / 액수 : " + account.getAccountBalance() + " 원 " + calendarUtil.getCurrentDate(account.getAccountDate()));
         }
 
         System.out.println("연간 수입 합계 : " + sum);
@@ -213,7 +217,7 @@ public class AccountsReports implements Report, Search, Menu {
 
         for (Account account : monthlyExpenseList) {
             String categoryName = getCategoryName(account.getCategoryId());
-            System.out.println("제목 : " + account.getAccountTitle() + " / 내용 : " + account.getAccountContent() + " / 카테고리 이름 : " + categoryName + " / 액수 : " + account.getAccountBalance() + " 원");
+            System.out.println("제목 : " + account.getAccountTitle() + " / 내용 : " + account.getAccountContent() + " / 카테고리 이름 : " + categoryName + " / 액수 : " + account.getAccountBalance() + " 원 " + calendarUtil.getCurrentDate(account.getAccountDate()));
         }
 
         System.out.println("합계 : " + sum);
@@ -244,7 +248,7 @@ public class AccountsReports implements Report, Search, Menu {
 
         for (Account account : monthlyIncomeList) {
             String categoryName = getCategoryName(account.getCategoryId());
-            System.out.println("제목 : " + account.getAccountTitle() + " / 내용 : " + account.getAccountContent() + " / 카테고리 이름 : " + categoryName + " / 액수 : " + account.getAccountBalance() + " 원");
+            System.out.println("제목 : " + account.getAccountTitle() + " / 내용 : " + account.getAccountContent() + " / 카테고리 이름 : " + categoryName + " / 액수 : " + account.getAccountBalance() + " 원 " + calendarUtil.getCurrentDate(account.getAccountDate()));
         }
 
         System.out.println("합계 : " + sum);
@@ -312,7 +316,12 @@ public class AccountsReports implements Report, Search, Menu {
 
     @Override
     public void showBalanceReport() {
-
+        List<Account> accountList = accountController.findAll();
+        int incomeTotal = accountList.stream().filter(account -> account.getAccountStatus().equals(AccountStatus.INCOME.getKeyword())).mapToInt(Account::getAccountBalance).sum();
+        int expenseTotal = accountList.stream().filter(account -> account.getAccountStatus().equals(AccountStatus.EXPAND.getKeyword())).mapToInt(Account::getAccountBalance).sum();
+        System.out.println("총 수입 금액 : " + incomeTotal);
+        System.out.println("총 소비 금액 : " + expenseTotal);
+        System.out.println("총 잔액 : " + (incomeTotal - expenseTotal));
     }
 
     @Override
