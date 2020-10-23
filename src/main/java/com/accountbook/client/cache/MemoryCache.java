@@ -46,10 +46,10 @@ public class MemoryCache implements Cache {
     public void set(DomainType domainType, Object obj, int idx) {
         List<Account> accounts = new ArrayList<>();
         List<Category> categories = new ArrayList<>();
-        if(domainType.getKey() == DomainType.ACCOUNT.getKey()) {
+        if(domainType.getKey().equals(DomainType.ACCOUNT.getKey())) {
             accounts = (List<Account>) memoryCache.get(domainType.getKey());
             accounts.set(idx, (Account) obj);
-        } else if(domainType.getKey() == DomainType.CATEGORY.getKey()) {
+        } else if(domainType.getKey().equals(DomainType.CATEGORY.getKey())) {
             categories = (List<Category>) memoryCache.get(domainType.getKey());
             categories.set(idx, (Category) obj);
         }
